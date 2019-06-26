@@ -1,5 +1,5 @@
 {
-  "name": "FelixRupp/icalnotificationgenerator",
+  "name": "felixrupp/icalnotificationgenerator",
   "description": "This package contains an iCal notification generator",
   "minimum-stability": "stable",
   "license": "proprietary",

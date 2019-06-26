@@ -1,19 +1,26 @@
 <?php
 
-
 namespace FelixRupp\iCalNotificationGenerator\Generator;
 
-
+use Exception;
+use Sabre\VObject\InvalidDataException;
 use Sabre\VObject\Reader;
 
+/**
+ * Class iCalNotificationGenerator
+ * @package FelixRupp\iCalNotificationGenerator\Generator
+ *
+ * @author Felix Rupp <kontakt@felixrupp.com>
+ * @copyright Felix Rupp
+ */
 class iCalNotificationGenerator implements GeneratorInterface
 {
-
 
     /**
      * @param string $fileName
      * @return string
-     * @throws \Sabre\VObject\InvalidDataException
+     * @throws InvalidDataException
+     * @throws Exception
      */
     public function generate($fileName)
     {
@@ -23,6 +30,16 @@ class iCalNotificationGenerator implements GeneratorInterface
         $vcalendar = Reader::read(
             fopen($fileName, 'r')
         );
+
+        $validationResults = $vcalendar->validate();
+
+        foreach($validationResults as $validationResult) {
+
+            if($validationResult['level'] >= 3) {
+
+                throw new Exception("Your ical file is invalid: ".$validationResult['message']);
+            }
+        }
 
         foreach ($vcalendar->VEVENT as $singleEvent) {
 

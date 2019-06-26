@@ -6,15 +6,19 @@ namespace FelixRupp\iCalNotificationGenerator\Command;
 use FelixRupp\iCalNotificationGenerator\Generator\GeneratorInterface;
 use FelixRupp\iCalNotificationGenerator\Generator\iCalNotificationGenerator;
 use Psr\Log\LoggerInterface;
-use Sabre\VObject\Component\VAlarm;
-use Sabre\VObject\InvalidDataException;
-use Sabre\VObject\Reader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class AddNotification
+ * @package FelixRupp\iCalNotificationGenerator\Command
+ *
+ * @author Felix Rupp <kontakt@felixrupp.com>
+ * @copyright Felix Rupp
+ */
 class AddNotification extends Command
 {
 
@@ -71,8 +75,7 @@ class AddNotification extends Command
 
                 $fileResult = file_put_contents($fileNameWithoutExtension."-with-alarm.".$fileNameExtension, $result);
 
-
-            } catch (InvalidDataException $e) {
+            } catch (\Exception $e) {
 
                 $logger->fatal("Fatal error: ".$e->getMessage());
             }
