@@ -1,0 +1,22 @@
+{
+  "name": "FelixRupp/icalnotificationgenerator",
+  "description": "This package contains an iCal notification generator",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Felix Rupp",
+      "email": "kontakt@felixrupp.com"
+    }
+  ],
+  "require": {
+    "sabre/vobject": "~4.2",
+    "symfony/console": "~4.3",
+    "psr/log": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FelixRupp\\iCalNotificationGenerator\\": "Classes/"
+    }
+  }
+}
