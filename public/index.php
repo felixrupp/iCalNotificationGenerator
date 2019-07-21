@@ -5,13 +5,11 @@ require_once(__DIR__ . "/../vendor/autoload.php");
 use FelixRupp\iCalNotificationGenerator\Generator\GeneratorInterface;
 use FelixRupp\iCalNotificationGenerator\Generator\iCalNotificationGenerator;
 
-$errorMessage = '';
-
 if (isset($_POST["generateSubmit"])) {
 
-    if(isset($_FILES['icalFile'])) {
+    $errorMessage = '';
 
-        #var_dump($_FILES['icalFile']);
+    if(isset($_FILES['icalFile'])) {
 
         $fileName = $_FILES['icalFile']['name'];
 
@@ -80,7 +78,7 @@ if (isset($_POST["generateSubmit"])) {
     </div>
 <?php } ?>
 
-<form action="index.php" method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <fieldset>
 
         <p><label for="icalFile">iCal File:</label>&nbsp;<input type="file" name="icalFile" id="icalFile"/></p>
